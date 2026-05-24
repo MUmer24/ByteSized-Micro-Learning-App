@@ -1,0 +1,50 @@
+{
+  "questions": [
+    {
+      "id": "1",
+      "category": "HTML",
+      "text": "Which tag defines an unordered list?",
+      "optionA": "<ul>",
+      "optionB": "<ol>",
+      "optionC": "<li>",
+      "correctOption": "A"
+    },
+    {
+      "id": "2",
+      "category": "CSS",
+      "text": "Which CSS property is used to change the background color?",
+      "optionA": "color",
+      "optionB": "background-color",
+      "optionC": "bgcolor",
+      "correctOption": "B"
+    },
+    {
+      "id": "3",
+      "category": "JS",
+      "text": "Which keyword is used to declare a block-scoped variable that cannot be reassigned?",
+      "optionA": "let",
+      "optionB": "var",
+      "optionC": "const",
+      "correctOption": "C"
+    },
+    {
+      "id": "4",
+      "category": "HTML",
+      "text": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+      "optionA": "src",
+      "optionB": "title",
+      "optionC": "alt",
+      "correctOption": "C"
+    },
+    {
+      "id": "5",
+      "category": "CSS",
+      "text": "How do you make each word in a text start with a capital letter?",
+      "optionA": "text-transform: capitalize;",
+      "optionB": "text-style: uppercase;",
+      "optionC": "transform: capitalize;",
+      "correctOption": "A"
+    }
+  ],
+  "results": []
+}

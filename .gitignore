@@ -1,0 +1,12 @@
+# Dependency directories
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Editor configurations
+.vscode/
+
+# Other 
+design/
+docs/
