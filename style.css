@@ -68,6 +68,9 @@ nav {
   padding: 16px 24px;
   background-color: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .nav-links {
