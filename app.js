@@ -181,3 +181,51 @@ function selectOption(selectedBtn, selectedKey) {
   // Enable Next Question button
   nextQuestionBtn.removeAttribute("disabled");
 }
+
+const finalScoreDisplay = document.getElementById("final-score-display");
+const quizCategorySelect = document.getElementById("quiz-category");
+
+// Next Question Button Logic
+nextQuestionBtn.addEventListener("click", () => {
+  const selectedBtn = optionContainer.querySelector(".option-btn.selected");
+
+  if (!selectedBtn) return;
+
+  const userAnswer = selectedBtn.getAttribute("data-answer");
+  const currentQ = currentQuestions[currentQuestionIndex];
+
+  // Check if answer is correct
+  if (userAnswer === currentQ.correctOption) {
+    score++;
+  }
+
+  // Move to next question
+  currentQuestionIndex++;
+
+  // Check if there are more questions
+  if (currentQuestionIndex < currentQuestions.length) {
+    loadQuestion();
+  } else {
+    finishQuiz();
+  }
+});
+
+// Finish Quiz and Show Results
+function finishQuiz() {
+  // Hide Active quiz view
+  viewQuiz.classList.add("hidden");
+
+  // Update final score
+  finalScoreDisplay.textContent = score;
+
+  // Update category in results view
+  quizCategorySelect.value = selectedCategory.toUpperCase();
+
+  quizCategorySelect.setAttribute("disabled", "true");
+
+  // Show results view
+  viewResults.classList.remove("hidden");
+  viewResults.classList.add("fade-in");
+
+  console.log(`Quiz finished. Final Score: ${score}/5`);
+}
