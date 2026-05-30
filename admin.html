@@ -64,6 +64,84 @@
         id="question-form-container"
       >
         <h3 id="form-title">Add New Question</h3>
+
+        <form id="question-form">
+          <input type="hidden" id="edit-question-id" value="" />
+
+          <div class="form-group">
+            <label for="q-category">Category</label>
+            <select id="q-category" required>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="JS">JavaScript</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="q-text">Question Text</label>
+            <textarea
+              id="q-text"
+              rows="2"
+              required
+              placeholder="Enter the question here..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="q-optA">Option A</label>
+            <input
+              type="text"
+              id="q-optA"
+              required
+              placeholder="First option"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="q-optB">Option B</label>
+            <input
+              type="text"
+              id="q-optB"
+              required
+              placeholder="Second option"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="q-optC">Option C</label>
+            <input
+              type="text"
+              id="q-optC"
+              required
+              placeholder="Third option"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="q-correct">Correct Option</label>
+            <select id="q-correct" required>
+              <option value="A">Option A</option>
+              <option value="B">Option B</option>
+              <option value="C">Option C</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 16px">
+            <button type="submit" id="save-question-btn">Save Question</button>
+            <button
+              type="button"
+              id="cancel-form-btn"
+              style="background-color: var(--text-secondary)"
+            >
+              Cancel
+            </button>
+          </div>
+          <span
+            id="admin-form-error"
+            class="error-text-color hidden"
+            style="display: block; margin-top: 12px"
+          ></span>
+        </form>
       </section>
     </main>
 

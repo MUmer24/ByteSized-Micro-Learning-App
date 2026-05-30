@@ -38,6 +38,7 @@ async function fetchAllQuestions() {
     }
 
     const questions = await response.json();
+    allQuestions = questions; // Store questions globally for editing
     renderTable(questions);
 
   } catch (error) {
@@ -73,3 +74,106 @@ function renderTable(questions) {
     tableBody.appendChild(row);
   });
 }
+
+
+// Form handling (POST and PUT operations)
+
+// Global state to store fetched questions so we can edit them
+let allQuestions = [];
+
+const addNewBtn = document.getElementById("add-new-btn");
+const questionFormContainer = document.getElementById("question-form-container");
+const questionForm = document.getElementById("question-form");
+const cancelFormBtn = document.getElementById("cancel-form-btn");
+const formTitle = document.getElementById("form-title");
+const editQuestionIdInput = document.getElementById("edit-question-id");
+const adminFormError = document.getElementById("admin-form-error");
+
+// Show Form for "Add New"
+addNewBtn.addEventListener("click", ()=>{
+    questionForm.reset();
+  editQuestionIdInput.value = ""; // Clears ID so we know it is a POST request
+  formTitle.textContent = "Add New Question";
+  questionFormContainer.classList.remove("hidden");
+  questionFormContainer.scrollIntoView({ behavior: "smooth" });
+});
+
+//Hide Form on "Cancel"
+cancelFormBtn.addEventListener("click", () => {
+  questionFormContainer.classList.add("hidden");
+  questionForm.reset();
+  adminFormError.classList.add("hidden");
+});
+
+// Handle "Edit" Button Clicks (Event Delegation)
+tableBody.addEventListener("click", (e) => {
+  // Find the closest button if clicked the icon inside it
+  const editBtn = e.target.closest(".edit-btn");
+  if (!editBtn) return;
+
+  const targetId = editBtn.getAttribute("data-id");
+  const questionToEdit = allQuestions.find(q => q.id === targetId);
+  
+  if (questionToEdit) {
+    // Populate the form
+    document.getElementById("q-category").value = questionToEdit.category;
+    document.getElementById("q-text").value = questionToEdit.text;
+    document.getElementById("q-optA").value = questionToEdit.optionA;
+    document.getElementById("q-optB").value = questionToEdit.optionB;
+    document.getElementById("q-optC").value = questionToEdit.optionC;
+    document.getElementById("q-correct").value = questionToEdit.correctOption;
+    
+    // Set hidden ID to refer to PUT mode
+    editQuestionIdInput.value = questionToEdit.id;
+    formTitle.textContent = `Edit Question (ID: ${questionToEdit.id})`;
+    
+    // Show form
+    questionFormContainer.classList.remove("hidden");
+    questionFormContainer.scrollIntoView({ behavior: "smooth" });
+  }
+});
+
+
+// Handle Form Submission (POST or PUT)
+
+questionForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  adminFormError.classList.add("hidden");
+
+  // Gather payload
+  const payload = {
+    category: document.getElementById("q-category").value,
+    text: document.getElementById("q-text").value.trim(),
+    optionA: document.getElementById("q-optA").value.trim(),
+    optionB: document.getElementById("q-optB").value.trim(),
+    optionC: document.getElementById("q-optC").value.trim(),
+    correctOption: document.getElementById("q-correct").value
+  };
+
+  const editingId = editQuestionIdInput.value;
+  const isEditing = editingId !== "";
+  
+  // Determine Method and Endpoint
+  const method = isEditing ? "PUT" : "POST";
+  const endpoint = isEditing ? `http://localhost:3000/questions/${editingId}` : "http://localhost:3000/questions";
+
+  try {
+    const response = await fetch(endpoint, {
+      method: method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+    // Success! Hide the form, clear it, and re-fetch the table
+    questionFormContainer.classList.add("hidden");
+    questionForm.reset();
+    fetchAllQuestions(); // Re-render the updated table
+
+  } catch (error) {
+    console.error("Save failed:", error);
+    adminFormError.textContent = "Failed to save question. Check server connection.";
+    adminFormError.classList.remove("hidden");
+  }
+});

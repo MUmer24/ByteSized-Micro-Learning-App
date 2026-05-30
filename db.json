@@ -10,13 +10,13 @@
       "correctOption": "A"
     },
     {
-      "id": "2",
       "category": "CSS",
-      "text": "Which CSS property is used to change the background color?",
+      "text": "Which CSS",
       "optionA": "color",
       "optionB": "background-color",
       "optionC": "bgcolor",
-      "correctOption": "B"
+      "correctOption": "C",
+      "id": "2"
     },
     {
       "id": "3",
@@ -44,6 +44,15 @@
       "optionB": "text-style: uppercase;",
       "optionC": "transform: capitalize;",
       "correctOption": "A"
+    },
+    {
+      "category": "JS",
+      "text": "Who are u",
+      "optionA": "JS",
+      "optionB": "language",
+      "optionC": "Css",
+      "correctOption": "A",
+      "id": "jwO9lhZbqGE"
     }
   ],
   "results": [
