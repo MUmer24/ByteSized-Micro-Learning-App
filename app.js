@@ -229,3 +229,117 @@ function finishQuiz() {
 
   console.log(`Quiz finished. Final Score: ${score}/5`);
 }
+
+// Form validation and POST request
+const feedbackForm = document.getElementById("feedback-form");
+const submitResultsBtn = document.getElementById("submit-results-btn");
+const formError = document.getElementById("form-error");
+
+feedbackForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Clear any previous error messages
+  formError.classList.add("hidden");
+  formError.textContent = "";
+
+  const studentName = document.getElementById("student-name").value.trim();
+  const rollNumber = document.getElementById("roll-number").value.trim();
+  const quizCategory = document.getElementById("quiz-category").value;
+  const difficultyRating = document.getElementById("difficulty-rating").value;
+  const feedbackNotes = document.getElementById("feedback-notes").value.trim();
+
+  if (rollNumber.length < 5 || !rollNumber.includes("-")) {
+    showError("Please enter a valid Roll Number format (e.g., SP26-BCS-001).");
+    return; // Stop execution
+  }
+
+  if (feedbackNotes.length < 5) {
+    showError("Please provide at least 5 characters of feedback.");
+    return; // Stop execution
+  }
+
+  // Build the JSON Payload
+  const payload = {
+    studentName,
+    rollNumber,
+    category: quizCategory,
+    difficultyRating: parseInt(difficultyRating, 10),
+    feedback: feedbackNotes,
+    score: score, // Tally from our global state
+  };
+
+  // Update UI to loading state
+  const originalBtnText = submitResultsBtn.textContent;
+  submitResultsBtn.setAttribute("disabled", "true");
+  submitResultsBtn.textContent = "Saving...";
+
+  // Send the POST Request
+  try {
+    const response = await fetch("http://localhost:3000/results", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    // check response.ok
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const savedData = await response.json();
+    console.log("Result saved successfully:", savedData);
+
+    // Success UI & App Reset
+    submitResultsBtn.textContent = "Saved Successfully!";
+    submitResultsBtn.style.backgroundColor = "#10b981"; // Success green
+    
+    // Automatically reset the app back to the welcome screen after 2 seconds
+    setTimeout(() => {
+      resetApp();
+    }, 2000);
+
+  } catch (error) {
+    console.error("POST failed:", error);
+    showError("Failed to save results. Is the JSON server running?");
+    submitResultsBtn.removeAttribute("disabled");
+    submitResultsBtn.textContent = originalBtnText;
+  }
+
+});
+
+
+// Helper function to display errors inline
+function showError(message) {
+  formError.textContent = message;
+  formError.classList.remove("hidden");
+}
+
+// Helper function to reset the app to the initial state
+function resetApp() {
+  // Clear the form
+  feedbackForm.reset();
+  
+  // Reset the button UI
+  submitResultsBtn.removeAttribute("disabled");
+  submitResultsBtn.textContent = "Submit Results";
+  submitResultsBtn.style.backgroundColor = ""; // Resets to CSS variable
+
+  // Hide Results View
+  viewResults.classList.add("hidden");
+  viewResults.classList.remove("fade-in");
+  
+  // Show Initial Views
+  document.getElementById("welcome-section").classList.remove("hidden");
+  document.getElementById("quiz-rules-container").classList.remove("hidden");
+  document.getElementById("topic-selection-container").classList.remove("hidden");
+  
+  // Reset Global Variables and Selection UI
+  score = 0;
+  currentQuestionIndex = 0;
+  selectedCategory = "";
+  
+  document.getElementById("start-quiz-btn").setAttribute("disabled", "true");
+  document.querySelectorAll(".topic-card").forEach(c => c.classList.remove("selected"));
+}
