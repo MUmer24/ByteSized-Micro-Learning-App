@@ -331,6 +331,99 @@ textarea:focus {
   margin-top: 8px;
 }
 
+
+/* Admin Utility Classes */
+
+.admin-nav {
+  background-color: var(--nav-admin);
+}
+
+/* Table Layout */
+.table-section {
+  margin-bottom: 24px;
+}
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Enables horizontal scroll on mobile */
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-primary);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+th, td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  background-color: var(--bg-secondary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+td {
+  font-size: 0.9rem;
+}
+
+/* Action Buttons inside the table */
+.action-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+}
+.action-btn:hover {
+  background-color: var(--bg-secondary);
+  color: var(--accent);
+}
+.action-btn.delete-btn:hover {
+  color: #ef4444; /* Red for destructive actions */
+}
+
+.admin-link{
+  color: var(--accent) !important;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.form-container-spacing {
+  margin-top: 24px;
+}
+.text-center {
+  text-align: center;
+}
+.error-text-color {
+  color: #ef4444;
+}
+
+
+.truncate-text {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mono-bold {
+  font-family: var(--font-mono);
+  font-weight: bold;
+}
 /* ----- Mobile Responsiveness ---------------------- */
 
 @media (max-width: 768px) {
@@ -349,5 +442,15 @@ textarea:focus {
 
   .topic-cards {
     flex-direction: column;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .table-header button {
+    width: 100%;
+    justify-content: center;
   }
 }
