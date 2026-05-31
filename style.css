@@ -424,6 +424,67 @@ td {
   font-family: var(--font-mono);
   font-weight: bold;
 }
+
+
+/* Statistics Card */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.stat-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.stat-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.stat-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+/* Custom Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+.btn-secondary {
+  background-color: var(--text-secondary);
+}
+.btn-danger {
+  background-color: #ef4444;
+}
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
 /* ----- Mobile Responsiveness ---------------------- */
 
 @media (max-width: 768px) {
@@ -452,5 +513,8 @@ td {
   .table-header button {
     width: 100%;
     justify-content: center;
+  }
+  .stats-container {
+    grid-template-columns: 1fr 1fr; /* 2x2 grid on mobile */
   }
 }

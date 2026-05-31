@@ -10,13 +10,13 @@
       "correctOption": "A"
     },
     {
+      "id": "2",
       "category": "CSS",
-      "text": "Which CSS",
+      "text": "Which CSS property is used to change the background color of an element?",
       "optionA": "color",
       "optionB": "background-color",
       "optionC": "bgcolor",
-      "correctOption": "C",
-      "id": "2"
+      "correctOption": "B"
     },
     {
       "id": "3",
@@ -25,15 +25,6 @@
       "optionA": "let",
       "optionB": "var",
       "optionC": "const",
-      "correctOption": "C"
-    },
-    {
-      "id": "4",
-      "category": "HTML",
-      "text": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
-      "optionA": "src",
-      "optionB": "title",
-      "optionC": "alt",
       "correctOption": "C"
     },
     {
@@ -46,33 +37,114 @@
       "correctOption": "A"
     },
     {
+      "id": "jwO9lhZbqGE",
       "category": "JS",
-      "text": "Who are u",
-      "optionA": "JS",
-      "optionB": "language",
-      "optionC": "Css",
-      "correctOption": "A",
-      "id": "jwO9lhZbqGE"
+      "text": "Which of the following is a JavaScript data type?",
+      "optionA": "Boolean",
+      "optionB": "Float",
+      "optionC": "Integer",
+      "correctOption": "A"
+    },
+    {
+      "id": "6",
+      "category": "HTML",
+      "text": "What is the correct HTML element for inserting a line break?",
+      "optionA": "<break>",
+      "optionB": "<lb>",
+      "optionC": "<br>",
+      "correctOption": "C"
+    },
+    {
+      "id": "7",
+      "category": "HTML",
+      "text": "Which attribute is used to specify a unique identifier for an HTML element?",
+      "optionA": "class",
+      "optionB": "id",
+      "optionC": "name",
+      "correctOption": "B"
+    },
+    {
+      "id": "8",
+      "category": "CSS",
+      "text": "Which property is used to change the font of an element?",
+      "optionA": "font-family",
+      "optionB": "font-style",
+      "optionC": "font-weight",
+      "correctOption": "A"
+    },
+    {
+      "id": "9",
+      "category": "CSS",
+      "text": "How do you select an element with the id 'header' in CSS?",
+      "optionA": ".header",
+      "optionB": "header",
+      "optionC": "#header",
+      "correctOption": "C"
+    },
+    {
+      "id": "10",
+      "category": "JS",
+      "text": "How do you write 'Hello World' in an alert box?",
+      "optionA": "msg('Hello World');",
+      "optionB": "alert('Hello World');",
+      "optionC": "alertBox('Hello World');",
+      "correctOption": "B"
+    },
+    {
+      "id": "11",
+      "category": "JS",
+      "text": "Which operator is used to assign a value to a variable?",
+      "optionA": "=",
+      "optionB": "==",
+      "optionC": "===",
+      "correctOption": "A"
     }
   ],
   "results": [
     {
+      "id": "eQpwtYl6_Ds",
       "studentName": "umer",
       "rollNumber": "SP26-BCS-001",
       "category": "CSS",
       "difficultyRating": 3,
       "feedback": "fdsfffds",
-      "score": 1,
-      "id": "eQpwtYl6_Ds"
+      "score": 1
     },
     {
+      "id": "QSymVFuB7kM",
       "studentName": "Umer `",
       "rollNumber": "f24bdocs00-00",
       "category": "HTML",
       "difficultyRating": 3,
       "feedback": "vdv,dvld",
-      "score": 0,
-      "id": "QSymVFuB7kM"
+      "score": 0
+    },
+    {
+      "id": "aB3dfX89_K1",
+      "studentName": "Ali Khan",
+      "rollNumber": "SP26-BCS-042",
+      "category": "JS",
+      "difficultyRating": 4,
+      "feedback": "The block scope questions were tricky but good.",
+      "score": 3
+    },
+    {
+      "id": "zP9lmK24_Q5",
+      "studentName": "Aisha Ahmed",
+      "rollNumber": "FA25-BCS-118",
+      "category": "HTML",
+      "difficultyRating": 2,
+      "feedback": "Easy questions, well structured.",
+      "score": 2
+    },
+    {
+      "id": "mX5rtV12_P9",
+      "studentName": "Zainab Raza",
+      "rollNumber": "SP26-BCS-009",
+      "category": "CSS",
+      "difficultyRating": 3,
+      "feedback": "Enjoyed the text transform properties query.",
+      "score": 2
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
