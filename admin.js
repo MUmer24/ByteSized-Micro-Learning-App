@@ -1,3 +1,33 @@
+// Variables and DOM Elements
+
+const API_BASE_URL = "http://localhost:3000/"; // Base URL for JSON Server
+
+const tableBody = document.getElementById("table-body");
+
+// Global state to store fetched questions so we can edit them
+let allQuestions = [];
+
+const addNewBtn = document.getElementById("add-new-btn");
+const questionFormContainer = document.getElementById(
+  "question-form-container",
+);
+const questionForm = document.getElementById("question-form");
+const cancelFormBtn = document.getElementById("cancel-form-btn");
+const formTitle = document.getElementById("form-title");
+const editQuestionIdInput = document.getElementById("edit-question-id");
+const adminFormError = document.getElementById("admin-form-error");
+
+// Handle "Delete" Operations
+const deleteModal = document.getElementById("delete-modal");
+const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
+const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
+let deleteTargetId = null; // Store the ID of the item to be deleted
+
+// Statistics and Chart
+let chartInstance = null;
+
+// ----------------------------------------------------
+
 // Theme setup
 document.addEventListener("DOMContentLoaded", async () => {
   const themeToggleBtn = document.getElementById("theme-toggle");
@@ -26,11 +56,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 // Data fetching and rendering (GET operation)
-const tableBody = document.getElementById("table-body");
 
 async function fetchAllQuestions() {
   try {
-    const response = await fetch("http://localhost:3000/questions");
+    const response = await fetch(`${API_BASE_URL}questions`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -74,19 +103,6 @@ function renderTable(questions) {
 }
 
 // Form handling (POST and PUT operations)
-
-// Global state to store fetched questions so we can edit them
-let allQuestions = [];
-
-const addNewBtn = document.getElementById("add-new-btn");
-const questionFormContainer = document.getElementById(
-  "question-form-container",
-);
-const questionForm = document.getElementById("question-form");
-const cancelFormBtn = document.getElementById("cancel-form-btn");
-const formTitle = document.getElementById("form-title");
-const editQuestionIdInput = document.getElementById("edit-question-id");
-const adminFormError = document.getElementById("admin-form-error");
 
 // Show Form for "Add New"
 addNewBtn.addEventListener("click", () => {
@@ -154,8 +170,8 @@ questionForm.addEventListener("submit", async (e) => {
   // Determine Method and Endpoint
   const method = isEditing ? "PUT" : "POST";
   const endpoint = isEditing
-    ? `http://localhost:3000/questions/${editingId}`
-    : "http://localhost:3000/questions";
+    ? `${API_BASE_URL}questions/${editingId}`
+    : `${API_BASE_URL}questions`;
 
   try {
     const response = await fetch(endpoint, {
@@ -178,11 +194,6 @@ questionForm.addEventListener("submit", async (e) => {
   }
 });
 
-// Handle "Delete" Operations
-const deleteModal = document.getElementById("delete-modal");
-const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
-const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
-let deleteTargetId = null; // Store the ID of the item to be deleted
 
 tableBody.addEventListener("click", (e) => {
   const deleteBtn = e.target.closest(".delete-btn");
@@ -191,6 +202,7 @@ tableBody.addEventListener("click", (e) => {
   // Store id and Show confirmation modal
   deleteTargetId = deleteBtn.getAttribute("data-id");
   deleteModal.classList.remove("hidden");
+  deleteModal.scrollIntoView({ behavior: "smooth", block: "center" });
 });
 
 cancelDeleteBtn.addEventListener("click", () => {
@@ -203,12 +215,9 @@ confirmDeleteBtn.addEventListener("click", async () => {
   if (!deleteTargetId) return;
 
   try {
-    const response = await fetch(
-      `http://localhost:3000/questions/${deleteTargetId}`,
-      {
-        method: "DELETE",
-      },
-    );
+    const response = await fetch(`${API_BASE_URL}questions/${deleteTargetId}`, {
+      method: "DELETE",
+    });
 
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
@@ -223,12 +232,10 @@ confirmDeleteBtn.addEventListener("click", async () => {
   }
 });
 
-// Statistics and Chart
-let chartInstance = null;
 
 async function fetchDashboardStats() {
   try {
-    const response = await fetch("http://localhost:3000/results");
+    const response = await fetch(`${API_BASE_URL}results`);
 
     if (!response.ok) throw new Error("Failed to fetch results");
 

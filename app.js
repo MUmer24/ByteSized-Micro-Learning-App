@@ -1,4 +1,7 @@
 // Variables and DOM Elements
+
+const API_BASE_URL = "http://localhost:3000/"; // Base URL for JSON Server
+
 const viewWelcome = document.getElementById("welcome-section");
 const viewQuizRules = document.getElementById("quiz-rules-container");
 const viewQuiz = document.getElementById("quiz-container");
@@ -10,6 +13,26 @@ const startQuizBtn = document.getElementById("start-quiz-btn");
 const quizCategoryBadge = document.getElementById("quiz-category-badge");
 
 let selectedCategory = "";
+
+// Quiz variables
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+
+const questionText = document.getElementById("question-text");
+const optionContainer = document.getElementById("options-container");
+const quizProgress = document.getElementById("quiz-progress");
+const nextQuestionBtn = document.getElementById("next-question-btn");
+
+const finalScoreDisplay = document.getElementById("final-score-display");
+const quizCategorySelect = document.getElementById("quiz-category");
+
+// Form validation and POST request
+const feedbackForm = document.getElementById("feedback-form");
+const submitResultsBtn = document.getElementById("submit-results-btn");
+const formError = document.getElementById("form-error");
+
+// -----------------------------------------------------------
 
 // Theme switcher
 document.addEventListener("DOMContentLoaded", () => {
@@ -82,16 +105,6 @@ startQuizBtn.addEventListener("click", () => {
 
 // Quiz logic (fetching questions, handling answers, showing results, etc.)
 
-// Quiz variables and DOM Elemnts
-let currentQuestions = [];
-let currentQuestionIndex = 0;
-let score = 0;
-
-const questionText = document.getElementById("question-text");
-const optionContainer = document.getElementById("options-container");
-const quizProgress = document.getElementById("quiz-progress");
-const nextQuestionBtn = document.getElementById("next-question-btn");
-
 // Fetch questions from the JSON Server
 async function fetchQuestions(category) {
   try {
@@ -99,7 +112,7 @@ async function fetchQuestions(category) {
 
     // Fetch questions for the selected category
     const response = await fetch(
-      `http://localhost:3000/questions?category=${category.toUpperCase()}`,
+      `${API_BASE_URL}questions?category=${category.toUpperCase()}`,
     );
 
     if (!response.ok) {
@@ -182,9 +195,6 @@ function selectOption(selectedBtn, selectedKey) {
   nextQuestionBtn.removeAttribute("disabled");
 }
 
-const finalScoreDisplay = document.getElementById("final-score-display");
-const quizCategorySelect = document.getElementById("quiz-category");
-
 // Next Question Button Logic
 nextQuestionBtn.addEventListener("click", () => {
   const selectedBtn = optionContainer.querySelector(".option-btn.selected");
@@ -218,6 +228,10 @@ function finishQuiz() {
   // Update final score
   finalScoreDisplay.textContent = score;
 
+  // Update total questions display
+  document.getElementById("total-questions-display").textContent =
+    currentQuestions.length;
+
   // Update category in results view
   quizCategorySelect.value = selectedCategory.toUpperCase();
 
@@ -226,14 +240,9 @@ function finishQuiz() {
   // Show results view
   viewResults.classList.remove("hidden");
   viewResults.classList.add("fade-in");
-
-  console.log(`Quiz finished. Final Score: ${score}/5`);
 }
 
 // Form validation and POST request
-const feedbackForm = document.getElementById("feedback-form");
-const submitResultsBtn = document.getElementById("submit-results-btn");
-const formError = document.getElementById("form-error");
 
 feedbackForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -275,12 +284,12 @@ feedbackForm.addEventListener("submit", async (e) => {
 
   // Send the POST Request
   try {
-    const response = await fetch("http://localhost:3000/results", {
+    const response = await fetch(`${API_BASE_URL}results`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
 
     // check response.ok
@@ -294,21 +303,18 @@ feedbackForm.addEventListener("submit", async (e) => {
     // Success UI & App Reset
     submitResultsBtn.textContent = "Saved Successfully!";
     submitResultsBtn.style.backgroundColor = "#10b981"; // Success green
-    
+
     // Automatically reset the app back to the welcome screen after 2 seconds
     setTimeout(() => {
       resetApp();
     }, 2000);
-
   } catch (error) {
     console.error("POST failed:", error);
     showError("Failed to save results. Is the JSON server running?");
     submitResultsBtn.removeAttribute("disabled");
     submitResultsBtn.textContent = originalBtnText;
   }
-
 });
-
 
 // Helper function to display errors inline
 function showError(message) {
@@ -320,7 +326,7 @@ function showError(message) {
 function resetApp() {
   // Clear the form
   feedbackForm.reset();
-  
+
   // Reset the button UI
   submitResultsBtn.removeAttribute("disabled");
   submitResultsBtn.textContent = "Submit Results";
@@ -329,17 +335,21 @@ function resetApp() {
   // Hide Results View
   viewResults.classList.add("hidden");
   viewResults.classList.remove("fade-in");
-  
+
   // Show Initial Views
   document.getElementById("welcome-section").classList.remove("hidden");
   document.getElementById("quiz-rules-container").classList.remove("hidden");
-  document.getElementById("topic-selection-container").classList.remove("hidden");
-  
+  document
+    .getElementById("topic-selection-container")
+    .classList.remove("hidden");
+
   // Reset Global Variables and Selection UI
   score = 0;
   currentQuestionIndex = 0;
   selectedCategory = "";
-  
+
   document.getElementById("start-quiz-btn").setAttribute("disabled", "true");
-  document.querySelectorAll(".topic-card").forEach(c => c.classList.remove("selected"));
+  document
+    .querySelectorAll(".topic-card")
+    .forEach((c) => c.classList.remove("selected"));
 }

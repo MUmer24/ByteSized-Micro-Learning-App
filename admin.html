@@ -1,189 +1,157 @@
 <!doctype html>
 <html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ByteSized - Admin Dashboard</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByteSized - Admin Dashboard</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <body>
-    <nav class="admin-nav">
-      <h2><a href="admin.html" class="admin-link">ByteSized Admin</a></h2>
-      <div class="nav-links">
-        <a href="index.html" class="admin-link">User Panel</a>
-        <button id="theme-toggle" class="theme-toggle admin-theme-btn">
-          <span id="theme-icon" class="material-symbols-outlined"
-            >dark_mode</span
-          >
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="admin-nav">
+    <h2><a href="admin.html" class="admin-link">ByteSized <h3>Admin</h3></a></h2>
+    <div class="nav-links">
+      <a href="index.html" class="admin-link">User Panel</a>
+      <button id="theme-toggle" class="theme-toggle admin-theme-btn">
+        <span id="theme-icon" class="material-symbols-outlined">dark_mode</span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="admin-container" class="fade-in">
+    <section class="stats-container" id="admin-stats">
+      <div class="stat-card">
+        <span class="stat-label">Total Questions</span>
+        <span class="stat-value" id="stat-total-qs">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Total Attempts</span>
+        <span class="stat-value" id="stat-total-attempts">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Avg. Difficulty</span>
+        <span class="stat-value" id="stat-avg-diff">0.0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Top Category</span>
+        <span class="stat-value" id="stat-top-cat">-</span>
+      </div>
+    </section>
+
+    <section class="card form-container-spacing">
+      <h3 class="text-center">Quiz Attempts by Category</h3>
+      <div style="position: relative; height: 300px; width: 100%;">
+        <canvas id="analytics-chart"></canvas>
+      </div>
+    </section>
+
+    <section class="card table-section form-container-spacing">
+      <div class="table-header">
+        <h3>Question Bank Management</h3>
+        <button id="add-new-btn" class="btn-icon">
+          <span class="material-symbols-outlined">add</span> New Question
         </button>
       </div>
-    </nav>
 
-    <main id="admin-container" class="fade-in">
-      <section class="card table-section">
-        <div class="table-header">
-          <h3>Question Bank Management</h3>
-          <button id="add-new-btn" class="btn-icon">
-            <span class="material-symbols-outlined">add</span> New Question
+      <div class="table-wrapper">
+        <table id="questions-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Category</th>
+              <th>Question</th>
+              <th>Answer</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <tr>
+              <td colspan="5" class="text-center">Loading Questions...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card hidden form-container-spacing" id="question-form-container">
+      <h3 id="form-title">Add New Question</h3>
+
+      <form id="question-form">
+        <input type="hidden" id="edit-question-id" value="" />
+
+        <div class="form-group">
+          <label for="q-category">Category</label>
+          <select id="q-category" required>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="JS">JavaScript</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="q-text">Question Text</label>
+          <textarea id="q-text" rows="2" required placeholder="Enter the question here..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="q-optA">Option A</label>
+          <input type="text" id="q-optA" required placeholder="First option" />
+        </div>
+        </div>
+
+        <div class="form-group">
+          <label for="q-optB">Option B</label>
+          <input type="text" id="q-optB" required placeholder="Second option" />
+        </div>
+
+        <div class="form-group">
+          <label for="q-optC">Option C</label>
+          <input type="text" id="q-optC" required placeholder="Third option" />
+        </div>
+
+        <div class="form-group">
+          <label for="q-correct">Correct Option</label>
+          <select id="q-correct" required>
+            <option value="A">Option A</option>
+            <option value="B">Option B</option>
+            <option value="C">Option C</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 16px">
+          <button type="submit" id="save-question-btn">Save Question</button>
+          <button type="button" id="cancel-form-btn" style="background-color: var(--text-secondary)">
+            Cancel
           </button>
         </div>
+        <span id="admin-form-error" class="error-text-color hidden" style="display: block; margin-top: 12px"></span>
+      </form>
+    </section>
 
-        <div class="table-wrapper">
-          <table id="questions-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Category</th>
-                <th>Question</th>
-                <th>Correct Answer</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="table-body">
-              <tr>
-                <td colspan="5" class="text-center">Loading Questions...</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section
-        class="card hidden form-container-spacing"
-        id="question-form-container"
-      >
-        <h3 id="form-title">Add New Question</h3>
-
-        <form id="question-form">
-          <input type="hidden" id="edit-question-id" value="" />
-
-          <div class="form-group">
-            <label for="q-category">Category</label>
-            <select id="q-category" required>
-              <option value="HTML">HTML</option>
-              <option value="CSS">CSS</option>
-              <option value="JS">JavaScript</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="q-text">Question Text</label>
-            <textarea
-              id="q-text"
-              rows="2"
-              required
-              placeholder="Enter the question here..."
-            ></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="q-optA">Option A</label>
-            <input
-              type="text"
-              id="q-optA"
-              required
-              placeholder="First option"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="q-optB">Option B</label>
-            <input
-              type="text"
-              id="q-optB"
-              required
-              placeholder="Second option"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="q-optC">Option C</label>
-            <input
-              type="text"
-              id="q-optC"
-              required
-              placeholder="Third option"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="q-correct">Correct Option</label>
-            <select id="q-correct" required>
-              <option value="A">Option A</option>
-              <option value="B">Option B</option>
-              <option value="C">Option C</option>
-            </select>
-          </div>
-
-          <div style="display: flex; gap: 12px; margin-top: 16px">
-            <button type="submit" id="save-question-btn">Save Question</button>
-            <button
-              type="button"
-              id="cancel-form-btn"
-              style="background-color: var(--text-secondary)"
-            >
-              Cancel
-            </button>
-          </div>
-          <span
-            id="admin-form-error"
-            class="error-text-color hidden"
-            style="display: block; margin-top: 12px"
-          ></span>
-        </form>
-      </section>
-
-      <section class="stats-container form-container-spacing" id="admin-stats">
-        <div class="stat-card">
-          <span class="stat-label">Total Questions</span>
-          <span class="stat-value" id="stat-total-qs">0</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">Total Attempts</span>
-          <span class="stat-value" id="stat-total-attempts">0</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">Avg. Difficulty</span>
-          <span class="stat-value" id="stat-avg-diff">0.0</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">Top Category</span>
-          <span class="stat-value" id="stat-top-cat">-</span>
-        </div>
-      </section>
-
-      <section class="card form-container-spacing">
-        <h3 class="text-center">Quiz Attempts by Category</h3>
-        <div style="position: relative; height: 300px; width: 100%;">
-          <canvas id="analytics-chart"></canvas>
-        </div>
-      </section>
-
-      <div id="delete-modal" class="modal-overlay hidden">
-        <div class="modal-content card fade-in">
-          <h3>Confirm Deletion</h3>
-          <p>Are you sure you want to delete this question? This action cannot be undone.</p>
-          <div class="modal-actions">
-            <button id="cancel-delete-btn" class="btn-secondary">Cancel</button>
-            <button id="confirm-delete-btn" class="btn-danger">Yes, Delete</button>
-          </div>
+    <div id="delete-modal" class="modal-overlay hidden">
+      <div class="modal-content card fade-in">
+        <h3>Confirm Deletion</h3>
+        <p>Are you sure you want to delete this question? This action cannot be undone.</p>
+        <div class="modal-actions">
+          <button id="cancel-delete-btn" class="btn-secondary">Cancel</button>
+          <button id="confirm-delete-btn" class="btn-danger">Yes, Delete</button>
         </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <script type="module" src="admin.js"></script>
-  </body>
+  <script type="module" src="admin.js"></script>
+</body>
+
 </html>

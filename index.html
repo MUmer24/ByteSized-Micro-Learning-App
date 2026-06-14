@@ -1,197 +1,166 @@
 <!doctype html>
 <html lang="en" data-theme="light">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ByteSized - Micro-Learning App</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByteSized - Micro-Learning App</title>
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav>
-      <h2><a href="#">ByteSized</a></h2>
-      <div class="nav-links">
-        <a href="admin.html">Admin</a>
-        <button id="theme-toggle" class="theme-toggle">
-          <span id="theme-icon" class="material-symbols-outlined"
-            >dark_mode</span
-          >
-        </button>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav>
+    <h2><a href="index.html" class="user-link">ByteSized <h3>User</h3></a></h2>
+    <div class="nav-links">
+      <a href="admin.html">Admin</a>
+      <button id="theme-toggle" class="theme-toggle">
+        <span id="theme-icon" class="material-symbols-outlined">dark_mode</span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="app-container" class="fade-in">
+    <section id="welcome-section" class="fade-in">
+      <h1>Welcome to ByteSized!</h1>
+      <p>
+        Accelerate your technical mastery through surgical micro-learning
+        units.
+      </p>
+    </section>
+
+    <section id="quiz-rules-container" class="card">
+      <h3>Quiz Rules</h3>
+
+      <div class="quiz-rule">
+        <span class="material-symbols-outlined">check_circle</span>
+        <p>Select one topic card to unlock the quiz session.</p>
       </div>
-    </nav>
+      <div class="quiz-rule">
+        <span class="material-symbols-outlined">check_circle</span>
+        <p>Each session consists of 5 focused questions.</p>
+      </div>
+      <div class="quiz-rule">
+        <span class="material-symbols-outlined">check_circle</span>
+        <p>Immediate feedback will be provided upon completion.</p>
+      </div>
+    </section>
 
-    <main id="app-container" class="fade-in">
-      <section id="welcome-section" class="fade-in">
-        <h1>Welcome to ByteSized!</h1>
-        <p>
-          Accelerate your technical mastery through surgical micro-learning
-          units.
-        </p>
-      </section>
-
-      <section id="quiz-rules-container" class="card">
-        <h3>Quiz Rules</h3>
-
-        <div class="quiz-rule">
-          <span class="material-symbols-outlined">check_circle</span>
-          <p>Select one topic card to unlock the quiz session.</p>
-        </div>
-        <div class="quiz-rule">
-          <span class="material-symbols-outlined">check_circle</span>
-          <p>Each session consists of 5 focused questions.</p>
-        </div>
-        <div class="quiz-rule">
-          <span class="material-symbols-outlined">check_circle</span>
-          <p>Immediate feedback will be provided upon completion.</p>
-        </div>
-      </section>
-
-      <section
-        class="topic-selection card fade-in"
-        id="topic-selection-container"
-      >
-        <h3>Select a Topic to Begin:</h3>
-        <div class="topic-cards">
-          <div class="topic-card" data-category="html">
-            <div class="topic-icon-container">
-              <span class="material-symbols-outlined icon" data-icon="html"
-                >html</span
-              >
-            </div>
-            <div class="card-header">
-              <h3 class="card-title">HTML</h3>
-              <p class="card-subtitle">Structure & SEO</p>
-            </div>
-            <p class="class-description">
-              Semantic markup, accessibility standards, and document
-              architecture.
-            </p>
+    <section class="topic-selection card fade-in" id="topic-selection-container">
+      <h3>Select a Topic to Begin:</h3>
+      <div class="topic-cards">
+        <div class="topic-card" data-category="html">
+          <div class="topic-icon-container">
+            <span class="material-symbols-outlined icon" data-icon="html">html</span>
           </div>
-
-          <div class="topic-card" data-category="css">
-            <div class="topic-icon-container">
-              <span class="material-symbols-outlined icon" data-icon="css"
-                >css</span
-              >
-            </div>
-            <div class="card-header">
-              <h3 class="card-title">CSS</h3>
-              <p class="card-subtitle">Styling & Layout</p>
-            </div>
-            <p class="class-description">
-              Flexbox, Grid, Custom Properties, and complex responsive
-              animations.
-            </p>
+          <div class="card-header">
+            <h3 class="card-title">HTML</h3>
+            <p class="card-subtitle">Structure & SEO</p>
           </div>
-
-          <div class="topic-card" data-category="js">
-            <div class="topic-icon-container">
-              <span class="material-symbols-outlined icon" data-icon="js"
-                >javascript</span
-              >
-            </div>
-            <div class="card-header">
-              <h3 class="card-title">JavaScript</h3>
-              <p class="card-subtitle">Logic & State</p>
-            </div>
-            <p class="class-description">
-              ES6+ syntax, asynchronous programming, and DOM manipulation.
-            </p>
-          </div>
-        </div>
-        <button id="start-quiz-btn" disabled>Start Quiz</button>
-      </section>
-
-      <section id="quiz-container" class="card hidden">
-        <div class="quiz-header">
-          <span id="quiz-progress">Question 1 of 5</span>
-          <span id="quiz-category-badge" class="badge">HTML</span>
-        </div>
-        <div class="question-container">
-          <h2 id="question-text">Loading Question...</h2>
-          <div id="options-container" class="options-grid"></div>
-        </div>
-        <button id="next-question-btn" disabled>Next Question</button>
-      </section>
-
-      <section id="view-results" class="card hidden">
-        <div class="results-header">
-          <h1>🥳 Quiz Complete</h1>
-          <h2>You scored: <span id="final-score-display">0</span> out of 5</h2>
-        </div>
-        <div class="feedback-form-container">
-          <p>
-            Please complete the form below to save your result to the database:
+          <p class="class-description">
+            Semantic markup, accessibility standards, and document
+            architecture.
           </p>
-
-          <form action="post" id="feedback-form">
-            <div class="form-group">
-              <label for="student-name">Full Name:</label>
-              <input
-                type="text"
-                id="student-name"
-                required
-                placeholder="e.g., Umer Khan"
-              />
-            </div>
-            <div class="form-group">
-              <label for="roll-number">Roll Number:</label>
-              <input
-                type="text"
-                id="roll-number"
-                required
-                placeholder="e.g., F24-BDOCS-1M01001"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="quiz-category">Category</label>
-              <select id="quiz-category" required>
-                <option value="HTML">HTML</option>
-                <option value="CSS">CSS</option>
-                <option value="JS">JavaScript</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="difficulty-rating">Difficulty Rating (1-5)</label>
-              <input
-                type="number"
-                id="difficulty-rating"
-                min="1"
-                max="5"
-                required
-                value="3"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="feedback-notes">Feedback / Notes</label>
-              <textarea
-                id="feedback-notes"
-                rows="3"
-                required
-                placeholder="What did you learn or struggle with?"
-              ></textarea>
-            </div>
-
-            <button type="submit" id="submit-results-btn">
-              Submit Results
-            </button>
-            <span id="form-error" class="error-text">Error</span>
-          </form>
         </div>
-      </section>
-    </main>
-    <script type="module" src="app.js"></script>
-  </body>
+
+        <div class="topic-card" data-category="css">
+          <div class="topic-icon-container">
+            <span class="material-symbols-outlined icon" data-icon="css">css</span>
+          </div>
+          <div class="card-header">
+            <h3 class="card-title">CSS</h3>
+            <p class="card-subtitle">Styling & Layout</p>
+          </div>
+          <p class="class-description">
+            Flexbox, Grid, Custom Properties, and complex responsive
+            animations.
+          </p>
+        </div>
+
+        <div class="topic-card" data-category="js">
+          <div class="topic-icon-container">
+            <span class="material-symbols-outlined icon" data-icon="js">javascript</span>
+          </div>
+          <div class="card-header">
+            <h3 class="card-title">JavaScript</h3>
+            <p class="card-subtitle">Logic & State</p>
+          </div>
+          <p class="class-description">
+            ES6+ syntax, asynchronous programming, and DOM manipulation.
+          </p>
+        </div>
+      </div>
+      <button id="start-quiz-btn" disabled>Start Quiz</button>
+    </section>
+
+    <section id="quiz-container" class="card hidden">
+      <div class="quiz-header">
+        <span id="quiz-progress">Question 1 of 5</span>
+        <span id="quiz-category-badge" class="badge">HTML</span>
+      </div>
+      <div class="question-container">
+        <h2 id="question-text">Loading Question...</h2>
+        <div id="options-container" class="options-grid"></div>
+      </div>
+      <button id="next-question-btn" disabled>Next Question</button>
+    </section>
+
+    <section id="view-results" class="card hidden">
+      <div class="results-header">
+        <h1>🥳 Quiz Complete</h1>
+        <h2>You scored: <span id="final-score-display">0</span> out of <span id="total-questions-display">5</span></h2>
+      </div>
+      <div class="feedback-form-container">
+        <p>
+          Please complete the form below to save your result to the database:
+        </p>
+
+        <form action="post" id="feedback-form">
+          <div class="form-group">
+            <label for="student-name">Full Name:</label>
+            <input type="text" id="student-name" required placeholder="e.g., Umer Khan" />
+          </div>
+          <div class="form-group">
+            <label for="roll-number">Roll Number:</label>
+            <input type="text" id="roll-number" required placeholder="e.g., F24-BDOCS-1M01001" />
+          </div>
+
+          <div class="form-group">
+            <label for="quiz-category">Category</label>
+            <select id="quiz-category" required>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="JS">JavaScript</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="difficulty-rating">Difficulty Rating (1-5)</label>
+            <input type="number" id="difficulty-rating" min="1" max="5" required value="3" />
+          </div>
+
+          <div class="form-group">
+            <label for="feedback-notes">Feedback / Notes</label>
+            <textarea id="feedback-notes" rows="3" required
+              placeholder="What did you learn or struggle with?"></textarea>
+          </div>
+
+          <button type="submit" id="submit-results-btn">
+            Submit Results
+          </button>
+          <span id="form-error" class="error-text"></span>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+
 </html>

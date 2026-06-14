@@ -5,7 +5,9 @@
   --bg-secondary: #f3f4f6;
   --text-primary: #1f2937;
   --text-secondary: #4b5563;
-  --accent: #c4542f; /* Terracotta Orange */
+  --common-text: #e0e0e0;
+  --accent: #d4714f;
+  /* Terracotta Orange */
   --accent-light: rgba(196, 84, 47, 0.1);
   --surface: #f8f9fa;
   --border: #dee2e6;
@@ -24,6 +26,7 @@
   --bg-secondary: #0f0f1b;
   --text-primary: #e0e0e0;
   --text-secondary: #9ca3af;
+  --common-text: #e0e0e0;
   --accent: #d4714f;
   --accent-light: rgba(212, 113, 79, 0.15);
   --surface: #16213e;
@@ -71,6 +74,10 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+nav h2 {
+  display: flex;
 }
 
 .nav-links {
@@ -130,7 +137,7 @@ button:disabled {
 
 .theme-toggle {
   background: transparent;
-  color: var(--text-primary);
+  color: var(--common-text);
   border: 1px solid var(--border);
   padding: 8px 12px;
   border-radius: var(--radius-sm);
@@ -155,6 +162,7 @@ button:disabled {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -197,7 +205,6 @@ button:disabled {
 .topic-card:hover {
   border-color: var(--accent);
   background-color: var(--accent-light);
-  color: #fff;
 }
 
 .topic-card.selected {
@@ -249,6 +256,7 @@ button:disabled {
   opacity: 0.8;
   margin: 0;
 }
+
 .topic-selection button {
   margin-top: 16px;
 }
@@ -273,7 +281,7 @@ button:disabled {
   font-weight: bold;
 }
 
-.option-grid {
+.options-grid {
   display: grid;
   flex-direction: column;
   gap: 12px;
@@ -291,6 +299,7 @@ button:disabled {
 .option-btn:hover:not(:disabled) {
   border-color: var(--accent);
 }
+
 .option-btn.selected {
   background-color: var(--accent-light);
   border-color: var(--accent);
@@ -300,12 +309,14 @@ button:disabled {
 .form-group {
   margin-bottom: 16px;
 }
+
 label {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
   font-size: 0.9rem;
 }
+
 input,
 select,
 textarea {
@@ -317,6 +328,7 @@ textarea {
   color: var(--text-primary);
   font-family: var(--font-sans);
 }
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -338,38 +350,54 @@ textarea:focus {
   background-color: var(--nav-admin);
 }
 
-/* Table Layout */
-.table-section {
-  margin-bottom: 24px;
+.admin-link,
+.user-link {
+  color: var(--accent) !important;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
 }
+
+.admin-link h3,
+.user-link h3 {
+  font-size: 1rem;
+}
+
 .table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
 }
+
 .table-wrapper {
   width: 100%;
-  overflow-x: auto; /* Enables horizontal scroll on mobile */
+  overflow-x: auto;
+  /* Enables horizontal scroll on mobile */
   -webkit-overflow-scrolling: touch;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   background-color: var(--bg-primary);
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
 }
-th, td {
+
+th,
+td {
   padding: 12px 16px;
   border-bottom: 1px solid var(--border);
 }
+
 th {
   background-color: var(--bg-secondary);
   font-weight: 600;
   white-space: nowrap;
 }
+
 td {
   font-size: 0.9rem;
 }
@@ -384,16 +412,15 @@ td {
   transition: all 0.2s ease;
   display: inline-flex;
 }
+
 .action-btn:hover {
   background-color: var(--bg-secondary);
   color: var(--accent);
 }
-.action-btn.delete-btn:hover {
-  color: #ef4444; /* Red for destructive actions */
-}
 
-.admin-link{
-  color: var(--accent) !important;
+.action-btn.delete-btn:hover {
+  color: #ef4444;
+  /* Red for destructive actions */
 }
 
 .btn-icon {
@@ -402,12 +429,15 @@ td {
   justify-content: center;
   gap: 8px;
 }
+
 .form-container-spacing {
-  margin-top: 24px;
+  margin-top: 12px;
 }
+
 .text-center {
   text-align: center;
 }
+
 .error-text-color {
   color: #ef4444;
 }
@@ -432,6 +462,7 @@ td {
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
+
 .stat-card {
   background-color: var(--surface);
   border: 1px solid var(--border);
@@ -440,6 +471,7 @@ td {
   text-align: center;
   box-shadow: var(--shadow);
 }
+
 .stat-label {
   display: block;
   font-size: 0.85rem;
@@ -448,39 +480,49 @@ td {
   text-transform: uppercase;
   margin-bottom: 8px;
 }
+
 .stat-value {
   display: block;
   font-size: 2rem;
   font-weight: bold;
   color: var(--accent);
 }
+
 /* Custom Modal */
 .modal-overlay {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
+
 .modal-content {
   width: 90%;
   max-width: 400px;
   text-align: center;
 }
+
 .modal-actions {
   display: flex;
   justify-content: center;
   gap: 12px;
   margin-top: 24px;
 }
+
 .btn-secondary {
   background-color: var(--text-secondary);
 }
+
 .btn-danger {
   background-color: #ef4444;
 }
+
 .btn-danger:hover {
   background-color: #dc2626;
 }
@@ -488,17 +530,30 @@ td {
 /* ----- Mobile Responsiveness ---------------------- */
 
 @media (max-width: 768px) {
+
+  .card {
+    padding: 12px;
+  }
+
   nav {
-    flex-direction: column;
+    padding: 8px;
     gap: 12px;
     text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .admin-link,
+  .user-link {
+    gap: 4px;
+  }
+
+  .admin-link h3,
+  .user-link h3 {
+    font-size: 0.75rem;
   }
 
   main {
     padding: 16px;
-  }
-  button {
-    width: 100%;
   }
 
   .topic-cards {
@@ -510,11 +565,65 @@ td {
     align-items: flex-start;
     gap: 12px;
   }
+
   .table-header button {
     width: 100%;
     justify-content: center;
   }
+
   .stats-container {
-    grid-template-columns: 1fr 1fr; /* 2x2 grid on mobile */
+    grid-template-columns: 1fr 1fr;
+    /* 2x2 grid on mobile */
+    gap: 8px;
+  }
+
+  th,
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.7rem;
+
+  }
+
+  /* Action Buttons inside the table */
+  .action-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+  }
+
+  .modal-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .modal-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 10px 16px;
   }
 }
