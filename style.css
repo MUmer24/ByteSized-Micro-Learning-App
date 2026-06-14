@@ -7,11 +7,12 @@
   --text-secondary: #4b5563;
   --common-text: #e0e0e0;
   --accent: #d4714f;
+  --accent2: #e0e0e0;
   /* Terracotta Orange */
   --accent-light: rgba(196, 84, 47, 0.1);
   --surface: #f8f9fa;
   --border: #dee2e6;
-  --nav-admin: #1e293b;
+  --nav-admin: #a3553b;
   --shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   --radius-sm: 6px;
@@ -28,10 +29,12 @@
   --text-secondary: #9ca3af;
   --common-text: #e0e0e0;
   --accent: #d4714f;
+  --accent2: #e0e0e0;
   --accent-light: rgba(212, 113, 79, 0.15);
   --surface: #16213e;
   --border: #2a3a5e;
-  --nav-admin: #020617;
+  /* --nav-admin: #020617; */
+  --nav-admin: #a3553b;
   --shadow:
     0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }
@@ -144,6 +147,10 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+[data-theme="light"] .theme-toggle {
+  color: var(--text-primary);
+  border-color: var(--border);
 }
 
 /* Utility classes */
@@ -350,7 +357,12 @@ textarea:focus {
   background-color: var(--nav-admin);
 }
 
-.admin-link,
+.admin-link {
+  color: var(--accent2) !important;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
 .user-link {
   color: var(--accent) !important;
   display: flex;
