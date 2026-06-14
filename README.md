@@ -26,7 +26,7 @@ The application is divided into two distinct panels:
 3. **Start the Backend:** Navigate to the project folder in your terminal and run:  
    npx json-server \--watch db.json
 
-   _Note: Ensure it is running on http://localhost:YOUR_RUNNING_PORT._
+   _Note: Ensure it is running on http://localhost:\[YOUR_RUNNING_PORT\]._
 
 4. **Open the Application:** Open index.html directly in your modern web browser. Use the navigation links to switch between the User Panel and the Admin Panel.
 
@@ -55,16 +55,14 @@ The application is divided into two distinct panels:
 
 ## **📸 Screenshots**
 
-_(Replace these text blocks with actual image paths before submission)_
-
 **1\. User Panel (Light Mode)**
-
-\[Insert screenshot of index.html showing question cards and the form\]
+<img src="assets/imgs/indexPage_light.png" alt="User panel (Light)"/>
 
 **2\. Admin Panel (Dark Mode)**
 
-\[Insert screenshot of admin.html showing the data table and statistics\]
+<img src="assets/imgs/adminPage_dark.png" alt="Admin panel (dark)"/>
 
 **3\. Mobile View**
 
-\[Insert screenshot demonstrating mobile responsiveness on a phone-sized viewport\]
+<img src="assets/imgs/mobIndexPage_dark.png" alt="Mobile view User panel (dark)" width="200"/> |
+<img src="assets/imgs/mobAdminPage_light.png" alt="Mobile view Admin panel (light)" width="200"/>
