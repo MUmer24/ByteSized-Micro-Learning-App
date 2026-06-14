@@ -1,6 +1,6 @@
-# **ByteSized \- Web Dev Micro-Learning App**
+# ByteSized - Web Dev Micro-Learning App
 
-**Web Technologies SP26 \- Capstone Project**
+**Web Technologies SP26 - Capstone Project**
 
 **Student Name:** Muhammad Umer Khan
 
@@ -8,50 +8,86 @@
 
 **Section:** 4th Semester - 2M
 
-## **📖 Project Description**
+## Overview
 
 ByteSized is a client-side web application designed to test and manage web development knowledge (HTML, CSS, JavaScript). It operates purely on Vanilla JavaScript and custom CSS, utilizing json-server as a mock REST backend.
 
-The application is divided into two distinct panels:
+## What’s Included
 
-1. **User Panel:** Where students can view active questions, filter them by category, and submit their quiz attempt and feedback.
-2. **Admin Panel:** A management dashboard where instructors can view statistics, add new questions, edit existing ones, and delete outdated questions.
+- `index.html` - Student-facing quiz interface
+- `admin.html` - Admin dashboard for managing question bank and viewing analytics
+- `app.js` - User quiz flow, fetch logic, score tracking, and result submission
+- `admin.js` - Admin CRUD operations for questions, deletion confirmation, and dashboard stats
+- `style.css` - Shared styling, layout, responsive design, and theme support
+- `db.json` - Mock backend data for `questions` and `results`
 
-## **🚀 How to Install and Run**
+## Setup and Run
 
-1. **Install Node.js:** Ensure you have Node.js installed on your system.
-2. **Install JSON Server:** Open your terminal and run the following command to install JSON Server globally (if not already installed):  
-   npm install \-g json-server
+### Prerequisites
 
-3. **Start the Backend:** Navigate to the project folder in your terminal and run:  
-   npx json-server \--watch db.json
+- Node.js installed
+- A modern browser
 
-   _Note: Ensure it is running on http://localhost:\[YOUR_RUNNING_PORT\]._
+### Clone the Repository
 
-4. **Open the Application:** Open index.html directly in your modern web browser. Use the navigation links to switch between the User Panel and the Admin Panel.
+```bash
+git clone https://github.com/MUmer24/ByteSized-Micro-Learning-App.git
+cd ByteSized
+```
 
-## **✨ List of Features**
+### Install JSON Server
 
-**User Panel (index.html)**
+```bash
+npm install -g json-server
+```
 
-- \[x\] **GET Data:** Fetches active questions from the mock REST API using async/await.
-- \[x\] **Filter:** Filter questions dynamically by Category (HTML, CSS, JS).
-- \[x\] **POST Data:** Submit a Quiz Attempt via a 5-input form (Name, Roll No, Category, Difficulty, Feedback).
-- \[x\] **Validation:** Strict inline form validation with custom UI error messages (No alert() boxes).
-- \[x\] **Loading States:** Visual indicators while fetching data.
+> If you prefer not to install globally, you can use `npx json-server`.
 
-**Admin Panel (admin.html)**
+### Start the Mock Backend
 
-- \[x\] **Statistics:** Calculates and displays 4 dashboard statistics (Total Questions, Total Attempts, Most Popular Category, Average Difficulty).
-- \[x\] **Full CRUD Data Table:** Displays all questions in a responsive table.
-- \[x\] **Create (POST):** Add a new question to the bank.
-- \[x\] **Update (PUT/PATCH):** Edit an existing question inline.
-- \[x\] **Delete (DELETE):** Remove a question (protected by a custom JS confirmation modal).
+From the project root:
 
-**Bonus Features**
+```bash
+npx json-server --watch db.json --port 3000
+```
 
-- \[x\] **Mobile Responsiveness:** Custom CSS Flexbox and Grid layouts ensure the app looks perfect on desktop, tablet, and mobile phone screens.
-- \[x\] **Dark Mode Toggle:** A custom dark mode theme that persists across pages and reloads using localStorage.
+The backend will run at:
+
+- `http://localhost:3000/questions`
+- `http://localhost:3000/results`
+
+### Open the App
+
+Open the files directly in your browser:
+
+- `index.html` for the User Panel
+- `admin.html` for the Admin Dashboard
+
+Or using live server open at port 5500 `http://localhost:5500/index.html` and `http://localhost:5500/admin.html`.
+
+## Features
+
+### User Panel
+
+- Topic selection for HTML, CSS, or JavaScript quizzes
+- Loads category-specific questions from the JSON Server backend
+- Tracks current question progress and score dynamically
+- Displays final score and total question count after quiz completion
+- Validates student form fields before submitting results
+- Sends quiz results to `POST /results`
+- Supports light/dark theme toggle that persists in `localStorage`
+
+### Admin Panel
+
+- Fetches full question bank from `GET /questions`
+- Displays questions in a responsive table with edit/delete controls
+- Adds new questions with `POST /questions`
+- Updates existing questions with `PUT /questions/:id`
+- Deletes questions with a confirmation modal and `DELETE /questions/:id`
+- Calculates dashboard stats from stored results
+- Renders a Chart.js radar chart of quiz attempts by category
+- Preserves theme preference using `localStorage`
+
 
 ## **📸 Screenshots**
 
